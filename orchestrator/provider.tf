@@ -9,11 +9,6 @@ variable "project_id" {
   description = "GCP project id"
 }
 
-variable "project_number" {
-  description = "Project number, to associate roles to the service account created to the GCP service."
-  type        = number
-}
-
 variable "region" {
   description = "region"
   type        = string

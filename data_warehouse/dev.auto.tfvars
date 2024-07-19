@@ -1,6 +1,6 @@
-project_id     = "data-warehouse-418420"
+project_id     = "data-engineering-429904"
 region         = "EU"
-datasets_owner = "sa-dwh-dbt@data-warehouse-418420.iam.gserviceaccount.com"
+datasets_owner = "data-warehouse-owner@data-engineering-429904.iam.gserviceaccount.com"
 datasets = [
     {
         dataset = "snapshot"

@@ -1,6 +1,6 @@
-project_id = "data-warehouse-418420"
+project_id = "data-engineering-429904"
 region  = "EU"
-project_number  = 492379915356
+project_number  = 1053826738853
 
 service_accounts = [
   {
