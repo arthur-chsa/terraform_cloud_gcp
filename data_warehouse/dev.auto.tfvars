@@ -60,7 +60,7 @@ datasets = [
     },
     {
         dataset = "mart_product"
-        dataset_group = "sa-group-mart-finance@data-warehouse-418420.iam.gserviceaccount.com"
+        dataset_group = "sa-group-mart-product@data-warehouse-418420.iam.gserviceaccount.com"
         description = "Mart_product dataset"
         authorized_datasets = []
         dataset_labels = {"team": "product"}
