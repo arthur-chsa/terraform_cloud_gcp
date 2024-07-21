@@ -12,6 +12,13 @@ resource "google_project_iam_member" "composer_2" {
   role     = "roles/composer.serviceAgent"
 }
 
+resource "google_project_iam_member" "composer_3" {
+  provider = google-beta
+  project  = var.project_id
+  member   = "serviceAccount:service-${var.project_number}@cloudcomposer-accounts.iam.gserviceaccount.com"
+  role     = "roles/storage.objectViewer"
+}
+
 resource "google_project_iam_member" "compute_1" {
   provider = google-beta
   project  = var.project_id
