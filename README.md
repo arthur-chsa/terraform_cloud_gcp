@@ -11,9 +11,11 @@
 - The file with variable values are specific for each environment.
 
 ## Workspaces
-- gcp groups:
-  - Create service accounts, used in this project to represent groups;
+- service_accounts:
+  - Create service accounts (On this project,the service accounts represent groups, since no organizations are being used);
   - Assign roles to the service accounts.
+- service_permissions:
+  - Assign roles to the service accounts that run GCP services, according to the needs of the project.
 - data_warehouse:
   - Creates the DW datasets on BigQuery;
   - Adds one same service account as the owner of the datasets;
@@ -25,12 +27,18 @@
 - orchestrator:
   - Creates the Cloud Composer environment.
 
-## Configurations on Terraform Cloud
+## Initial setup
 
-### Authentication
-- Add the environment variable TF_CLI_ARGS_plan to each workspace, with the value "-var-file="./dev.auto.tfvars"", replacing dev for the correct environment, when necessary;
-- Add the environment variable GOOGLE_CREDENTIALS with the JSON containing the service account with permissions to create GCP infrastructure.
-- The Terraform operations are being executed with a service account on a separate project. In the target project, the permissions and role needed were added to that account.
+### On GCP
+- Create a project and check its ID.
+- Navitage to Settings and check the project number.
+- Create a service account to execute Terraform operations. 
+- For that service account, create a key and download the JSON file with it.
+- Go to Service & APIs and enable the following APIs:
+  - IAM;
+  - Cloud Resource Manager;
+  - Cloud Composer;
+- Create a role with the permissions needed to run the actions we will execute with Terraform:
   - Permissions needed to run gcp_groups workspace:
     - Permissions to Terraform service account:
       - iam.serviceAccounts.create
@@ -70,3 +78,20 @@
       - Role: Kubernetes Engine Service Agent
     - Permissions to service agent "[PROJECT_NUMBER]-compute@developer.gserviceaccount.com
       - Role: Composer Worker.
+- Assign the role to the Terraform service account;
+- Create a service account to be the owner of the data warehouse objects and assign the role BigQuery Admin;
+- 
+
+### On the tfvars files
+- Fill in the project ID and project number where needed, according to your project data;
+- Fill in some bucket name and orchestrator environment name, making sure you're using the same bucket name in the bucket creation and the orchestrator configuration.
+- Fill in the data warehouse owner service account.
+
+
+## Configurations on Terraform Cloud
+
+- For each folder, create a workspace on Terraform Cloud;
+
+### Authentication
+- Add a environment variable TF_CLI_ARGS_plan to each workspace, with the value "-var-file="./dev.auto.tfvars"", replacing dev for the correct environment, when necessary;
+- Add a sensitive environment variable GOOGLE_CREDENTIALS with the JSON containing the service account with permissions to create GCP infrastructure.

@@ -1,6 +1,5 @@
 project_id = "data-warehouse-418420"
 region  = "EU"
-project_number  = 492379915356
 
 service_accounts = [
   {
