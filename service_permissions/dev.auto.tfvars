@@ -1,3 +1,3 @@
-project_id = "data-engineering-429904"
+project_id = "data-warehouse-dev-450118"
 region  = "EU"
-project_number  = 1053826738853
+project_number  = 657384968519

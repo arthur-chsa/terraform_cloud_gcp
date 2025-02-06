@@ -1,7 +1,7 @@
 provider "google" {
   project = var.project_id
   region  = var.region
-  // credentials = "../keys/key.json"
+  credentials = "../keys/key.json"
 }
 
 variable "project_id" {
